@@ -1,0 +1,18 @@
+services:
+  joplin:
+    image: joplin/server:latest
+    restart: always
+    ports:
+      - "22300:22300"
+    env_file:
+      - .env
+    depends_on:
+      - joplin-db
+
+  joplin-db:
+    image: postgres:16
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./db:/var/lib/postgresql/data
