@@ -24,7 +24,9 @@ jobs:
           python-version: "3.12"
 
       - name: Validate Docker Compose Config
-        run: docker compose config
+        run: |
+          cp .env.example .env
+          docker compose config
 
       - name: Syntax and Test Suite Verification
         run: python3 -m py_compile tests/test_sync_service.py
